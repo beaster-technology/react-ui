@@ -1,5 +1,34 @@
 @import-normalize;
 
+html {
+  --light-yellow: #FAE9CA;
+  --yellow: #FCC462;
+  --light-salmon: #F0A191;
+  --salmon: #CA5D59;
+  --brown: #5A2E1F;
+  --black: #101010;
+
+  --footer-height: 3.75rem;
+}
+
 body {
+  margin: 0;
+  
   font-family: 'Poppins', sans-serif;
+  color: var(--black);
+
+  background-color: var(--light-yellow);
+}
+
+a {
+  text-decoration: none;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: var(--footer-height);
 }

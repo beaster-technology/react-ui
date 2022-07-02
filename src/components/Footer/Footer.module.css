@@ -1,0 +1,38 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: var(--footer-height);
+  
+  background-color: var(--brown);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer p {
+  font-weight: 400;
+  font-size: 1.1rem;
+
+  color: #fff;
+}
+
+.footer p:first-child {
+  margin: 0;  
+}
+
+.footer p:last-child {
+  margin: 0.4rem 0 0 0;  
+}
+
+.footer a {
+  color: var(--light-salmon);
+
+  transition: color 0.1s linear;
+}
+
+.footer a:hover {
+  color: var(--light-yellow);
+}
