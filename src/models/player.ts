@@ -6,13 +6,13 @@ export interface Bet {
   created_at: EpochTimeStamp;
 }
 
-export type BetCreationBody = Omit<Bet, 'created_at'>;
+export type BetRequestBody = Omit<Bet, 'created_at'>;
 
 export default interface Player {
   name: string;
   bet: Bet;
 }
 
-export interface PLayerCreationBody extends Omit<Player, 'bet'> {
-  bet: BetCreationBody;
+export interface PlayerRequestBody extends Omit<Player, 'bet'> {
+  bet: BetRequestBody;
 }

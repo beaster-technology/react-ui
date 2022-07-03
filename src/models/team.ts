@@ -3,4 +3,4 @@ export default interface Team {
   goals: number;
 }
 
-export type TeamCreationBody = Omit<Team, 'goals'>;
+export type TeamRequestBody = Omit<Team, 'goals'>;

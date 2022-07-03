@@ -1,5 +1,5 @@
-import Player, { PLayerCreationBody } from './player';
-import Team, { TeamCreationBody } from './team';
+import Player, { PlayerRequestBody } from './player';
+import Team, { TeamRequestBody } from './team';
 
 export default interface Game {
   id: string;
@@ -12,9 +12,9 @@ export default interface Game {
   is_open: boolean;
 }
 
-export interface GameCreationBody
+export interface GameRequestBody
   extends Omit<Game, 'teams' | 'players' | 'id' | 'open_at' | 'is_open'> {
-  teams: [TeamCreationBody];
-  players: [PLayerCreationBody];
+  teams: [TeamRequestBody];
+  players: [PlayerRequestBody];
   open_at?: EpochTimeStamp;
 }
