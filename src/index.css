@@ -31,5 +31,5 @@ a {
 }
 
 .content-wrap {
-  padding-bottom: var(--footer-height);
+  padding-bottom: calc(var(--footer-height) + 3rem);
 }
