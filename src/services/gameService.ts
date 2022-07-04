@@ -4,7 +4,7 @@ import GameResult from '../models/gameResult';
 import axiosClient from './apiClient';
 
 class GameService {
-  static async getGame(): Promise<[Game] | null> {
+  static async getGames(): Promise<[Game] | null> {
     try {
       const { data } = await axiosClient.get<[Game]>('/game');
 
