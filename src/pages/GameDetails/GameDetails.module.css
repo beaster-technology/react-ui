@@ -1,0 +1,151 @@
+.gameDetails {
+  --game-details-footer-height: 3rem;
+
+  position: relative;
+
+  margin: auto;
+  padding-bottom: var(--game-details-footer-height);
+
+  width: 55vw;
+  height: 50vh;
+
+  border-radius: 20px;
+
+  background-color: var(--lighter-salmon);
+
+  box-shadow: 10px 10px 25px 1px rgba(0, 0, 0, 0.15);
+
+  color: var(--brown);
+}
+
+.gameDetails button {
+  cursor: pointer;
+
+  padding: 0 1.5rem;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: var(--yellow);
+
+  font-size: 1.5rem;
+
+  transition: background-color 0.1s linear;
+}
+
+.gameDetails button:hover {
+  background-color: var(--light-yellow);
+}
+
+.gameDetails button:active {
+  background-color: var(--lighter-salmon);
+}
+
+.gameDetails header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 3rem;
+
+  border-radius: 20px 20px 0 0;
+
+  background-color: var(--salmon);
+  color: #fff;
+
+  padding: 1rem;
+
+  font-size: 1.5rem;
+}
+
+.gameDetails footer {
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 0 0 20px 20px;
+
+  background-color: var(--salmon);
+  color: #fff;
+
+  font-size: 1.5rem;
+}
+
+.gameDetails footer label {
+  display: flex;
+  align-items: center;
+
+  margin-right: 0.5rem;
+}
+
+.gameDetails footer label input {
+  padding: 0 1rem;
+
+  width: 12rem;
+
+  margin-left: 1rem;
+
+  background-color: var(--light-yellow);
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 1.5rem;
+}
+
+.playersContainer {
+  display: flex;
+
+  padding: 0 1rem;
+
+  font-size: 1.1rem;
+}
+
+.playersContainer div {
+  display: flex;
+  justify-content: space-between;
+
+  height: 100%;
+  width: 100%;
+}
+
+.playersContainer ul {
+  margin: 1rem 0;
+  padding: 0;
+  width: 50%;
+}
+
+.playersContainer ul:first-child {
+  padding-right: 0.5rem;
+  border-right: 2px solid;
+}
+
+.playersContainer ul:last-child {
+  padding-left: 0.5rem;
+  text-align: right;
+}
+
+.playersContainer ul li {
+  display: flex;
+  width: 100%;
+}
+
+.playersContainer ul li span:last-child {
+  flex-grow: 1;
+  text-align: right;
+  display: flex;
+}
+
+.playersContainer ul li span:last-child::before {
+  content: '';
+  border-bottom: 2px dotted;
+  flex-grow: 1;
+  margin-inline: 0.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.playersContainer ul li + li {
+  margin-top: 1.5rem;
+}

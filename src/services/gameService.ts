@@ -82,7 +82,7 @@ class GameService {
 
   private static handleAxiosError(error: unknown) {
     if (error instanceof AxiosError) {
-      console.log(`${error.code} : ${error.cause}`);
+      console.log(`${error.response?.status} : ${error.response?.data}`);
     } else {
       console.log(`An unexpected error occured: ${error}`);
     }
