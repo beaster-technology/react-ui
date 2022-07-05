@@ -149,3 +149,12 @@
 .playersContainer ul li + li {
   margin-top: 1.5rem;
 }
+
+.savedNotification {
+  position: absolute;
+  right: 3%;
+}
+
+.savedNotification div {
+  font-size: 1.3rem;
+}
