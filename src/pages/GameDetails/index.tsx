@@ -1,10 +1,11 @@
-import { Loader, Notification, ScrollArea } from '@mantine/core';
 import React, { useEffect, useRef, useState } from 'react';
+import { Loader, ScrollArea } from '@mantine/core';
 import { useNavigate, useParams } from 'react-router-dom';
 import Game from '../../models/game';
 import GameService from '../../services/gameService';
 
 import styles from './GameDetails.module.css';
+import AnimatedNotification from '../../components/AnimatedNotification';
 
 function GameDetails() {
   const params = useParams();
@@ -28,7 +29,7 @@ function GameDetails() {
   const updateGame = async () => {
     if (params.gameId && game) {
       await GameService.updateGame(params.gameId, game);
-      showGameSavedNotification(1000 * 4);
+      showGameSavedNotification(1000 * 3);
     }
   };
 
@@ -98,15 +99,13 @@ function GameDetails() {
               maxLength={12}
               value={game?.unit === 'Beastcoins' ? '' : game?.unit}
               onChange={(e) => {
-                console.log(e.target.value, game.unit);
-
                 setGame((previousGame) => ({
                   ...previousGame!,
                   unit: e.target.value || 'Beastcoins',
                 }));
 
                 if (timeoutToUpdate.current) window.clearTimeout(timeoutToUpdate.current);
-                timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 3);
+                timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 1.5);
               }}
             />
           </label>
@@ -115,15 +114,12 @@ function GameDetails() {
         </footer>
       </section>
 
-      {shouldShowGameSavedNotification && (
-        <Notification
-          className={styles.savedNotification}
-          color="teal"
-          onClose={() => setShouldShowGameSavedNotification(false)}
-        >
-          Alterações salvas
-        </Notification>
-      )}
+      <AnimatedNotification
+        show={shouldShowGameSavedNotification}
+        onClose={() => setShouldShowGameSavedNotification(false)}
+      >
+        Alterações salvas
+      </AnimatedNotification>
     </>
   );
 }
