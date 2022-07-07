@@ -18,7 +18,7 @@ function AnimatedNotification({ show, onClose, children }: AnimatedNotificationP
         <motion.div
           initial={{ right: '-30%' }}
           animate={{ right: '1%' }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, type: 'spring', stiffness: 500, damping: 30 }}
           exit={{ right: '-30%' }}
           className={styles.animationWrapper}
         >
