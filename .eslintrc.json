@@ -32,7 +32,8 @@
     ],
     "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
     "no-console": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/resolver": {
