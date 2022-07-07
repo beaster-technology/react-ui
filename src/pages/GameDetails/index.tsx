@@ -27,8 +27,8 @@ function GameDetails() {
   };
 
   const updateGame = async () => {
-    if (params.gameId && game) {
-      await GameService.updateGame(params.gameId, game);
+    if (params.gameId && gameRef.current) {
+      await GameService.updateGame(params.gameId, gameRef.current);
       showGameSavedNotification(1000 * 3);
     }
   };
