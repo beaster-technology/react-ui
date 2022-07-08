@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Loader, ScrollArea } from '@mantine/core';
+import { Loader } from '@mantine/core';
 import { useNavigate, useParams } from 'react-router-dom';
 import Game from '../../models/game';
 import GameService from '../../services/gameService';
@@ -8,12 +8,15 @@ import styles from './GameDetails.module.css';
 import AnimatedNotification from '../../components/AnimatedNotification';
 import GameDefinitionModal from '../../components/GameDefinitionModal';
 import AddPlayerModal from '../../components/AddPlayerModal';
+import GameResult from '../../models/gameResult';
+import PlayerList from '../../components/PlayerList';
 
 function GameDetails() {
   const params = useParams();
   const navigate = useNavigate();
 
   const [game, setGame] = useState<Game>();
+  const [gameResult, setGameResult] = useState<GameResult>();
   const [shouldShowGameSavedNotification, setShouldShowGameSavedNotification] = useState(false);
   const [openGameDefinitionModal, setOpenGameDefinitionModal] = useState(false);
   const [openAddPlayerModal, setOpenAddPlayerModal] = useState(false);
@@ -32,7 +35,17 @@ function GameDetails() {
 
   const updateGame = async () => {
     if (params.gameId && game) {
-      await GameService.updateGame(params.gameId, game);
+      if (game.is_open) {
+        await GameService.updateGame(params.gameId, game);
+      } else {
+        await GameService.closeGame(params.gameId);
+
+        const result = await GameService.getGameResult(params.gameId);
+
+        if (result) setGameResult(result);
+        else navigate('/');
+      }
+
       showGameSavedNotification(1000 * 3);
     }
   };
@@ -53,7 +66,7 @@ function GameDetails() {
     }
 
     if (timeoutToUpdate.current) window.clearTimeout(timeoutToUpdate.current);
-    timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 1.5);
+    timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 1);
   }, [game]);
 
   return !game ? (
@@ -129,38 +142,7 @@ function GameDetails() {
           <span>{game?.teams[1].name}</span>
         </header>
 
-        <ScrollArea
-          styles={{ scrollbar: { '&:hover': { backgroundColor: '#00000000' } } }}
-          style={{ height: 'calc(100% - var(--game-details-footer-height) * 2)' }}
-          className={styles.playersContainer}
-        >
-          <div>
-            <ul>
-              {game?.players
-                .filter((player) => player.bet.target === game.teams[0].name)
-                .map((player) => (
-                  <li key={player.name}>
-                    <span>{player.name}</span>{' '}
-                    <span>
-                      {player.bet.value} {game.unit}
-                    </span>
-                  </li>
-                ))}
-            </ul>
-            <ul>
-              {game?.players
-                .filter((player) => player.bet.target === game.teams[1].name)
-                .map((player) => (
-                  <li key={player.name}>
-                    <span>{player.name}</span>{' '}
-                    <span>
-                      {player.bet.value} {game.unit}
-                    </span>
-                  </li>
-                ))}
-            </ul>
-          </div>
-        </ScrollArea>
+        <PlayerList players={game.players} teams={game.teams} unit={game.unit} />
 
         <footer>
           <label htmlFor="unit">
@@ -190,7 +172,7 @@ function GameDetails() {
         show={shouldShowGameSavedNotification}
         onClose={() => setShouldShowGameSavedNotification(false)}
       >
-        Alterações salvas
+        Jogo salvo!
       </AnimatedNotification>
     </>
   );
