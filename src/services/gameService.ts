@@ -54,7 +54,7 @@ class GameService {
 
   static async closeGame(id: string): Promise<void> {
     try {
-      await axiosClient.delete(`/game/${id}/close`);
+      await axiosClient.post(`/game/${id}/close`);
     } catch (error) {
       this.handleAxiosError(error);
     }
