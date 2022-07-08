@@ -1,7 +1,8 @@
 import React from 'react';
+import CardJogo from '../../components/CardJogo';
 
 function Home() {
-  return <h1>Aqui a home</h1>;
+  return <CardJogo />;
 }
 
 export default Home;

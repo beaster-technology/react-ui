@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Mono:wght@100;200;500;700&display=swap');
+.CardJogo{
+  background-color: var(--salmon);
+  width: 22vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  font-family: 'Poppins', sans-serif;
+  padding: 4vh 0;
+  user-select: none;
+}
+
+.placar{
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  align-items: center;
+  color: #fbf2f2;
+  text-align: center;
+}
+
+.placar .time img{
+  background-color: #000;
+  width: 3.5vw;
+  height: 3.5vw;
+  border-radius: 100%;
+  cursor: pointer;
+  -webkit-user-drag: none;
+}
+.placar .time p{
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.infosJogo{
+  text-align: center;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.infosJogo .pontuacao{
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: 300;
+  padding-bottom: 1rem;
+}
+
+.infosJogo p{
+  margin: 0;
+  font-size: 1rem;
+}
+.infosJogo p:nth-child(3){
+  font-size: 0.7rem;
+}
+
+.detalhes{
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+  background-color: var(--yellow);
+  border-radius: 10px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: .25s ease-in;
+}
+.detalhes span{
+  height: fit-content;
+  margin: auto 0;
+  color: var(--brown);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.detalhes:hover{
+  transform: scale(0.975);
+}
