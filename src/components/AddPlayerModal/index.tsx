@@ -50,8 +50,8 @@ function AddPlayerModal({
           value={newPlayer.bet.value}
           rightSection={<span>{unit}</span>}
           hideControls
-          maxLength={4}
-          min={0}
+          precision={2}
+          maxLength={10}
           onChange={(e) => {
             setNewPlayer((prev) => ({
               ...prev,
