@@ -3,7 +3,7 @@ import Team from './team';
 export interface Bet {
   value: number;
   target: Team['name'];
-  created_at: EpochTimeStamp;
+  created_at?: EpochTimeStamp;
 }
 
 export type BetRequestBody = Omit<Bet, 'created_at'>;

@@ -7,6 +7,7 @@ import GameService from '../../services/gameService';
 import styles from './GameDetails.module.css';
 import AnimatedNotification from '../../components/AnimatedNotification';
 import GameDefinitionModal from '../../components/GameDefinitionModal';
+import AddPlayerModal from '../../components/AddPlayerModal';
 
 function GameDetails() {
   const params = useParams();
@@ -15,6 +16,7 @@ function GameDetails() {
   const [game, setGame] = useState<Game>();
   const [shouldShowGameSavedNotification, setShouldShowGameSavedNotification] = useState(false);
   const [openGameDefinitionModal, setOpenGameDefinitionModal] = useState(false);
+  const [openAddPlayerModal, setOpenAddPlayerModal] = useState(false);
 
   const gameRef = useRef<Game>();
 
@@ -77,6 +79,25 @@ function GameDetails() {
 
             updatedGame.teams[0].goals = teamOneGoals;
             updatedGame.teams[1].goals = teamTwoGoals;
+
+            return updatedGame;
+          });
+        }}
+      />
+
+      <AddPlayerModal
+        title="Novo apostador"
+        opened={openAddPlayerModal}
+        teams={game.teams}
+        unit={game.unit}
+        onClose={() => setOpenAddPlayerModal(false)}
+        onPlayerAddition={(newPlayer) => {
+          setOpenAddPlayerModal(false);
+
+          setGame((prevGame) => {
+            const updatedGame = { ...prevGame! };
+
+            updatedGame.players.push(newPlayer);
 
             return updatedGame;
           });
@@ -159,7 +180,9 @@ function GameDetails() {
             />
           </label>
 
-          <button type="button">Novo Apostador</button>
+          <button type="button" onClick={() => setOpenAddPlayerModal(true)}>
+            Novo Apostador
+          </button>
         </footer>
       </section>
 
