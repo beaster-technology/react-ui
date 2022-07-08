@@ -73,3 +73,7 @@
 .contentWrapper button:active {
   background-color: var(--salmon);
 }
+
+.contentWrapper button:disabled {
+  background-color: var(--light-yellow);
+}
