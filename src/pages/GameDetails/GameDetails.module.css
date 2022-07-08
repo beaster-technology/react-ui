@@ -29,6 +29,7 @@
   background-color: var(--yellow);
 
   font-size: 1.5rem;
+  text-align: center;
 
   transition: background-color 0.1s linear;
 }
@@ -42,6 +43,7 @@
 }
 
 .gameDetails header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,6 +58,32 @@
   padding: 1rem;
 
   font-size: 1.5rem;
+}
+
+.gameDefinition {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  width: calc(35vw / 2);
+}
+
+.box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.box:first-child > span {
+  margin-right: auto;
+}
+
+.box:last-child > span {
+  margin-left: auto;
 }
 
 .gameDetails footer {

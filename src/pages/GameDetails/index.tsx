@@ -86,15 +86,25 @@ function GameDetails() {
       <section className={styles.gameDetails}>
         <header>
           <span>{game?.teams[0].name}</span>
-          {game.is_open ? (
-            <button type="button" onClick={() => setOpenGameDefinitionModal(true)}>
-              Definir Resultado
-            </button>
-          ) : (
-            <>
-              <span>{game.teams[0].goals}</span> X <span>{game.teams[1].goals}</span>
-            </>
-          )}
+          <div className={styles.gameDefinition}>
+            {game.is_open ? (
+              <button type="button" onClick={() => setOpenGameDefinitionModal(true)}>
+                Definir Resultado
+              </button>
+            ) : (
+              <>
+                <div className={styles.box}>
+                  <span>{game.teams[0].goals}</span>
+                </div>
+
+                <div className={styles.box}>X</div>
+
+                <div className={styles.box}>
+                  <span>{game.teams[1].goals}</span>
+                </div>
+              </>
+            )}
+          </div>
           <span>{game?.teams[1].name}</span>
         </header>
 
