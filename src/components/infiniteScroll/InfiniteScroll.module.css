@@ -1,0 +1,7 @@
+.infiniteS{
+  width: 90vw;
+  padding: 1vh 4vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

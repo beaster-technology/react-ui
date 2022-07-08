@@ -1,8 +1,8 @@
 import React from 'react';
-import CardJogo from '../../components/CardJogo';
+import InfiniteScroll from '../../components/infiniteScroll';
 
 function Home() {
-  return <CardJogo />;
+  return <InfiniteScroll />;
 }
 
 export default Home;
