@@ -6,6 +6,7 @@ import GameService from '../../services/gameService';
 
 import styles from './GameDetails.module.css';
 import AnimatedNotification from '../../components/AnimatedNotification';
+import GameDefinitionModal from '../../components/GameDefinitionModal';
 
 function GameDetails() {
   const params = useParams();
@@ -13,9 +14,10 @@ function GameDetails() {
 
   const [game, setGame] = useState<Game>();
   const [shouldShowGameSavedNotification, setShouldShowGameSavedNotification] = useState(false);
+  const [openGameDefinitionModal, setOpenGameDefinitionModal] = useState(false);
 
   const gameRef = useRef<Game>();
-  gameRef.current = game;
+
   const timeoutToUpdate = useRef<number | undefined>(undefined);
 
   const showGameSavedNotification = (timeout = 0) => {
@@ -27,19 +29,30 @@ function GameDetails() {
   };
 
   const updateGame = async () => {
-    if (params.gameId && gameRef.current) {
-      await GameService.updateGame(params.gameId, gameRef.current);
+    if (params.gameId && game) {
+      await GameService.updateGame(params.gameId, game);
       showGameSavedNotification(1000 * 3);
     }
   };
 
   useEffect(() => {
-    if (params.gameId)
+    if (params.gameId) {
       GameService.getGameById(params.gameId).then((fetchedGame) => {
         if (fetchedGame) setGame(fetchedGame);
         else navigate('/');
       });
+    }
   }, []);
+
+  useEffect(() => {
+    if (!gameRef.current) {
+      gameRef.current = game;
+      return;
+    }
+
+    if (timeoutToUpdate.current) window.clearTimeout(timeoutToUpdate.current);
+    timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 1.5);
+  }, [game]);
 
   return !game ? (
     <Loader
@@ -49,10 +62,39 @@ function GameDetails() {
     />
   ) : (
     <>
+      <GameDefinitionModal
+        opened={openGameDefinitionModal}
+        title="Definição de resultado!"
+        teams={game.teams}
+        onClose={() => setOpenGameDefinitionModal(false)}
+        onGameDefinition={(teamOneGoals, teamTwoGoals) => {
+          setOpenGameDefinitionModal(false);
+
+          setGame((prevGame) => {
+            const updatedGame = { ...prevGame! };
+
+            updatedGame.is_open = false;
+
+            updatedGame.teams[0].goals = teamOneGoals;
+            updatedGame.teams[1].goals = teamTwoGoals;
+
+            return updatedGame;
+          });
+        }}
+      />
+
       <section className={styles.gameDetails}>
         <header>
           <span>{game?.teams[0].name}</span>
-          <button type="button">Definir Resultado</button>
+          {game.is_open ? (
+            <button type="button" onClick={() => setOpenGameDefinitionModal(true)}>
+              Definir Resultado
+            </button>
+          ) : (
+            <>
+              <span>{game.teams[0].goals}</span> X <span>{game.teams[1].goals}</span>
+            </>
+          )}
           <span>{game?.teams[1].name}</span>
         </header>
 
@@ -98,15 +140,12 @@ function GameDetails() {
               placeholder="Beastcoins"
               maxLength={12}
               value={game?.unit === 'Beastcoins' ? '' : game?.unit}
-              onChange={(e) => {
+              onChange={(e) =>
                 setGame((previousGame) => ({
                   ...previousGame!,
                   unit: e.target.value || 'Beastcoins',
-                }));
-
-                if (timeoutToUpdate.current) window.clearTimeout(timeoutToUpdate.current);
-                timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 1.5);
-              }}
+                }))
+              }
             />
           </label>
 
