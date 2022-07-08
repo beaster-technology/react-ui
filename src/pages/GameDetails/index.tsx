@@ -36,7 +36,7 @@ function GameDetails() {
   };
 
   useEffect(() => {
-    if (params.gameId) {
+    if (params.gameId && !game) {
       GameService.getGameById(params.gameId).then((fetchedGame) => {
         if (fetchedGame) setGame(fetchedGame);
         else navigate('/');
