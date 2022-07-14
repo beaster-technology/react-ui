@@ -1,28 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Game from '../../models/game';
 import styles from './CardJogo.module.css';
 import logo from './logo.jpg';
 
-function CardJogo() {
+type CardJogoProps = {
+  jogo: Game;
+};
+
+function CardJogo({ jogo }: CardJogoProps) {
+  const [time1, time2] = jogo.teams;
+  const tempo = new Date(jogo.open_at * 1000);
+
   return (
     <div className={styles.CardJogo}>
       <div className={styles.placar}>
         <div className={styles.time}>
-          <img src={logo} alt="{1+2}" className="logoTime" />
-          <p>Vasco pra caralho</p>
+          <img src={logo} alt={time1.name} className="logoTime" />
+          <p>{time1.name}</p>
         </div>
         <div className={styles.infosJogo}>
           <div className={styles.pontuacao}>
-            <span>?</span>
+            <span>{time1.goals == null ? '?' : time1.goals}</span>
             <span>x</span>
-            <span>?</span>
+            <span>{time2.goals == null ? '?' : time2.goals}</span>
           </div>
-          <p>05/07/2022</p>
-          <p>14:35</p>
+          <p>{tempo.toLocaleDateString()}</p>
+          <p>{tempo.toLocaleTimeString()}</p>
         </div>
         <div className={styles.time}>
-          <img src={logo} alt="{1+2}" className="logoTime" />
-          <p>Vasco</p>
+          <img src={logo} alt={time2.name} className="logoTime" />
+          <p>{time2.name}</p>
         </div>
       </div>
       <div className={styles.detalhes}>
