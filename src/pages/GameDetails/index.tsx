@@ -10,6 +10,7 @@ import GameDefinitionModal from '../../components/GameDefinitionModal';
 import AddPlayerModal from '../../components/AddPlayerModal';
 import GameResult from '../../models/gameResult';
 import PlayerList from '../../components/PlayerList';
+import GameResultContainer from '../../components/GameResultContainer';
 
 function GameDetails() {
   const params = useParams();
@@ -37,16 +38,18 @@ function GameDetails() {
     if (params.gameId && game) {
       if (game.is_open) {
         await GameService.updateGame(params.gameId, game);
-      } else {
-        await GameService.closeGame(params.gameId);
-
-        const result = await GameService.getGameResult(params.gameId);
-
-        if (result) setGameResult(result);
-        else navigate('/');
+        showGameSavedNotification(1000 * 3);
       }
+    }
+  };
 
-      showGameSavedNotification(1000 * 3);
+  const closeGame = async () => {
+    if (params.gameId && game && !gameResult) {
+      await GameService.closeGame(params.gameId);
+
+      const result = await GameService.getGameResult(params.gameId);
+
+      if (result) setGameResult(result);
     }
   };
 
@@ -65,8 +68,12 @@ function GameDetails() {
       return;
     }
 
-    if (timeoutToUpdate.current) window.clearTimeout(timeoutToUpdate.current);
-    timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 1);
+    if (game?.is_open) {
+      if (timeoutToUpdate.current) window.clearTimeout(timeoutToUpdate.current);
+      timeoutToUpdate.current = window.setTimeout(updateGame, 1000 * 1);
+    } else {
+      closeGame();
+    }
   }, [game]);
 
   return !game ? (
@@ -142,7 +149,11 @@ function GameDetails() {
           <span>{game?.teams[1].name}</span>
         </header>
 
-        <PlayerList players={game.players} teams={game.teams} unit={game.unit} />
+        {!gameResult ? (
+          <PlayerList players={game.players} teams={game.teams} unit={game.unit} />
+        ) : (
+          <GameResultContainer gameResult={gameResult} unit={game.unit} />
+        )}
 
         <footer>
           <label htmlFor="unit">

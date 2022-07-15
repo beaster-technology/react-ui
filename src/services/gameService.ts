@@ -52,11 +52,15 @@ class GameService {
     }
   }
 
-  static async closeGame(id: string): Promise<void> {
+  static async closeGame(id: string): Promise<GameResult | null> {
     try {
-      await axiosClient.post(`/game/${id}/close`);
+      const { data } = await axiosClient.post(`/game/${id}/close`);
+
+      return data;
     } catch (error) {
       this.handleAxiosError(error);
+
+      return null;
     }
   }
 
