@@ -45,9 +45,7 @@ function GameDetails() {
 
   const closeGame = async () => {
     if (params.gameId && game && !gameResult) {
-      await GameService.closeGame(params.gameId);
-
-      const result = await GameService.getGameResult(params.gameId);
+      const result = await GameService.closeGame(params.gameId);
 
       if (result) setGameResult(result);
     }
