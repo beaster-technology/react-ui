@@ -4,9 +4,9 @@ import GameResult from '../models/gameResult';
 import axiosClient from './apiClient';
 
 class GameService {
-  static async getGame(): Promise<[Game] | null> {
+  static async getGames(): Promise<Game[] | null> {
     try {
-      const { data } = await axiosClient.get<[Game]>('/game');
+      const { data } = await axiosClient.get<Game[]>('/game');
 
       return data;
     } catch (error) {
@@ -52,11 +52,15 @@ class GameService {
     }
   }
 
-  static async closeGame(id: string): Promise<void> {
+  static async closeGame(id: string): Promise<GameResult | null> {
     try {
-      await axiosClient.delete(`/game/${id}/close`);
+      const { data } = await axiosClient.post(`/game/${id}/close`);
+
+      return data;
     } catch (error) {
       this.handleAxiosError(error);
+
+      return null;
     }
   }
 
@@ -82,7 +86,7 @@ class GameService {
 
   private static handleAxiosError(error: unknown) {
     if (error instanceof AxiosError) {
-      console.log(`${error.code} : ${error.cause}`);
+      console.log(`${error.response?.status} : ${error.response?.data}`);
     } else {
       console.log(`An unexpected error occured: ${error}`);
     }

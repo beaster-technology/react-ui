@@ -1,21 +1,24 @@
 @import-normalize;
 
 html {
-  --light-yellow: #FAE9CA;
-  --yellow: #FCC462;
-  --lighter-salmon: #F5C8B0;
-  --light-salmon: #F0A191;
-  --salmon: #CA5D59;
-  --brown: #5A2E1F;
+  --light-yellow: #fae9ca;
+  --yellow: #fcc462;
+  --lighter-salmon: #f5c8b0;
+  --light-salmon: #f0a191;
+  --salmon: #ca5d59;
+  --brown: #5a2e1f;
   --black: #101010;
 
-  --footer-height: 3.75rem;
+  --footer-height: 4rem;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   margin: 0;
-  
-  font-family: 'Poppins', sans-serif;
+
   color: var(--black);
 
   background-color: var(--light-yellow);
@@ -25,11 +28,24 @@ a {
   text-decoration: none;
 }
 
+/* remove arrows from inputs */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 .page-container {
   position: relative;
   min-height: 100vh;
 }
 
 .content-wrap {
-  padding-bottom: var(--footer-height);
+  padding-bottom: calc(var(--footer-height) + 3rem);
 }

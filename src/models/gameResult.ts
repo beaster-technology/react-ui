@@ -3,6 +3,6 @@ import Team from './team';
 
 export default interface GameResult {
   id: string;
-  winners: [Player];
+  winners: Player[];
   champion: Team['name'];
 }
