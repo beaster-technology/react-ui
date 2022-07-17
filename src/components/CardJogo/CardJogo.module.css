@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Mono:wght@100;200;500;700&display=swap');
-.CardJogo{
+.CardJogo {
   background-color: var(--salmon);
   width: 23vw;
   height: 23vh;
@@ -15,7 +15,7 @@
   box-shadow: 4px 4px 9px #000000a1;
 }
 
-.placar{
+.placar {
   display: flex;
   justify-content: space-between;
   width: 95%;
@@ -24,26 +24,28 @@
   text-align: center;
 }
 
-.placar .time img{
+.placar .time img {
   background-color: #000;
   width: 4.5vw;
   height: 4.5vw;
   border-radius: 100%;
   -webkit-user-drag: none;
+
+  object-fit: cover;
 }
-.placar .time p{
+.placar .time p {
   margin: 0;
   font-size: 0.8rem;
 }
 
-.infosJogo{
+.infosJogo {
   text-align: center;
   display: flex;
   width: 100%;
   flex-direction: column;
 }
 
-.infosJogo .pontuacao{
+.infosJogo .pontuacao {
   font-size: 2rem;
   display: flex;
   justify-content: space-evenly;
@@ -51,15 +53,15 @@
   padding-bottom: 1rem;
 }
 
-.infosJogo p{
+.infosJogo p {
   margin: 0;
   font-size: 1rem;
 }
-.infosJogo p:nth-child(3){
+.infosJogo p:nth-child(3) {
   font-size: 0.7rem;
 }
 
-.detalhes{
+.detalhes {
   padding: 0 1.8rem;
   display: flex;
   justify-content: center;
@@ -68,9 +70,9 @@
   border-radius: 10px;
   margin-top: 1rem;
   cursor: pointer;
-  transition: .25s ease-in;
+  transition: 0.25s ease-in;
 }
-.detalhes span{
+.detalhes span {
   height: fit-content;
   margin: auto 0;
   color: var(--brown);
@@ -78,6 +80,6 @@
   font-weight: 400;
 }
 
-.detalhes:hover{
+.detalhes:hover {
   transform: scale(0.975);
 }
