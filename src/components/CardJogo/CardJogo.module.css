@@ -2,7 +2,7 @@
 .CardJogo {
   background-color: var(--salmon);
   width: 23vw;
-  height: 23vh;
+  height: 28vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
