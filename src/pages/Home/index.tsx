@@ -1,7 +1,8 @@
 import React from 'react';
+import InfiniteScroll from '../../components/infiniteScroll';
 
 function Home() {
-  return <h1>Aqui a home</h1>;
+  return <InfiniteScroll />;
 }
 
 export default Home;
