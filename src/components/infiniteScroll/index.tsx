@@ -10,7 +10,7 @@ function InfiniteScroll() {
 
   React.useEffect(() => {
     async function buscaJogos() {
-      const response = await GameService.getGame();
+      const response = await GameService.getGames();
       setGames(await response);
     }
     buscaJogos();
