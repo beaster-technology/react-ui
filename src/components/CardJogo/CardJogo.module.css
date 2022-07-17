@@ -29,7 +29,6 @@
   width: 4.5vw;
   height: 4.5vw;
   border-radius: 100%;
-  cursor: pointer;
   -webkit-user-drag: none;
 }
 .placar .time p{

@@ -16,7 +16,11 @@ function CardJogo({ jogo }: CardJogoProps) {
     <div className={styles.CardJogo}>
       <div className={styles.placar}>
         <div className={styles.time}>
-          <img src={logo} alt={time1.name} className="logoTime" />
+          <img
+            src={`https://countryflagsapi.com/png/${time1.name}`}
+            alt={time1.name}
+            className="logoTime"
+          />
           <p>{time1.name}</p>
         </div>
         <div className={styles.infosJogo}>
@@ -29,7 +33,11 @@ function CardJogo({ jogo }: CardJogoProps) {
           <p>{tempo.toLocaleTimeString()}</p>
         </div>
         <div className={styles.time}>
-          <img src={logo} alt={time2.name} className="logoTime" />
+          <img
+            src={`https://countryflagsapi.com/png/${time2.name}`}
+            alt={time2.name}
+            className="logoTime"
+          />
           <p>{time2.name}</p>
         </div>
       </div>
