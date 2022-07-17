@@ -3,14 +3,16 @@ import { Modal, Select } from '@mantine/core';
 
 import styles from './NewGameModalProps.module.css';
 import useTeams from '../../hooks/useTeams';
+import { GameRequestBody } from '../../models/game';
 
 interface NewGameModalProps {
   opened: boolean;
   title: string;
   onClose: () => void;
+  onGameCreation: (game: GameRequestBody) => void;
 }
 
-function NewGameModal({ opened, title, onClose }: NewGameModalProps) {
+function NewGameModal({ opened, title, onClose, onGameCreation }: NewGameModalProps) {
   const teams = useTeams();
 
   const [team1, setTeam1] = useState<string | null>(null);
@@ -59,6 +61,22 @@ function NewGameModal({ opened, title, onClose }: NewGameModalProps) {
             onChange={(team) => setTeam2(team)}
           />
         </div>
+
+        <button
+          type="button"
+          disabled={!team1 || !team2}
+          onClick={() => {
+            const game: GameRequestBody = {
+              teams: [{ name: team1! }, { name: team2! }],
+              players: [],
+              unit: 'Beastcoins',
+            };
+
+            onGameCreation(game);
+          }}
+        >
+          Criar jogo
+        </button>
       </div>
     </Modal>
   );
