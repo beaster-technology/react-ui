@@ -61,7 +61,7 @@
 }
 
 .detalhes{
-  width: 60%;
+  padding: 0 1.8rem;
   display: flex;
   justify-content: center;
   height: 2.2rem;

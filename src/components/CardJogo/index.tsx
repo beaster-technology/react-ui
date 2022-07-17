@@ -33,9 +33,11 @@ function CardJogo({ jogo }: CardJogoProps) {
           <p>{time2.name}</p>
         </div>
       </div>
-      <div className={styles.detalhes}>
-        <span>Mais detalhes</span>
-      </div>
+      <Link to={jogo.id}>
+        <div className={styles.detalhes}>
+          <span>Mais detalhes</span>
+        </div>
+      </Link>
     </div>
   );
 }
