@@ -2,7 +2,7 @@ import React from 'react';
 import CardJogo from '../CardJogo';
 import CardNovoJogo from '../CardNovoJogo';
 import styles from './InfiniteScroll.module.css';
-import Game, { GameRequestBody } from '../../models/game';
+import Game from '../../models/game';
 import GameService from '../../services/gameService';
 
 function InfiniteScroll() {
