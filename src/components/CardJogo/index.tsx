@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Game from '../../models/game';
 import styles from './CardJogo.module.css';
-import logo from './logo.jpg';
 
 type CardJogoProps = {
   jogo: Game;
