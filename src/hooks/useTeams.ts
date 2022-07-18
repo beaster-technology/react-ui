@@ -1,0 +1,38 @@
+const teams = {
+  germany: 'Alemanha',
+  'saudi arabia': 'Arábia Saudita',
+  argentina: 'Argentina',
+  australia: 'Austrália',
+  belgium: 'Bélgica',
+  brazil: 'Brasil',
+  cameroon: 'Camarões',
+  canada: 'Canadá',
+  qatar: 'Qatar',
+  'southe korea': 'Coreia do Sul',
+  'costa rica': 'Costa Rica',
+  croatia: 'Croácia',
+  denmark: 'Dinamarca',
+  ecuator: 'Equador',
+  spain: 'Espanha',
+  'united states': 'Estados Unidos',
+  france: 'França',
+  ghana: 'Gana',
+  iran: 'Irã',
+  japan: 'Japão',
+  morocco: 'Marrocos',
+  mexico: 'México',
+  netherlands: 'Holanda',
+  poland: 'Polônia',
+  portugal: 'Portugal',
+  senegal: 'Senegal',
+  serbia: 'Sérvia',
+  switzerland: 'Suíça',
+  tunisia: 'Tunísia',
+  uruguay: 'Uruguai',
+  england: 'Inglaterra',
+  wales: 'País de Gales',
+};
+
+export default function useTeams() {
+  return teams;
+}

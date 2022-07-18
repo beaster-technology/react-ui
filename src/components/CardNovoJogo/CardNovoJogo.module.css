@@ -1,7 +1,13 @@
-
-.CardNovoJogo{
+.wrapperButton {
+  padding: none;
+  border: none;
   background-color: transparent;
-  width: 23vw;
+}
+
+.CardNovoJogo {
+  background-color: transparent;
+  width: 22vw;
+  height: 28vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -12,23 +18,24 @@
   margin-bottom: 5vh;
   user-select: none;
   border: 10px dashed var(--light-salmon);
-  transition: .3s ease;
+  transition: 0.3s ease;
   cursor: pointer;
 }
 
-.CardNovoJogo:hover{
+.CardNovoJogo:hover {
   transform: scale(0.95);
 }
 
-.CardNovoJogo p{
+.CardNovoJogo p {
   margin: 0;
+  line-height: 0rem;
 }
 
-.CardNovoJogo p:nth-child(1){
+.CardNovoJogo p:nth-child(1) {
   font-size: 7rem;
   color: var(--light-salmon);
 }
-.CardNovoJogo p:nth-child(2){
+.CardNovoJogo p:nth-child(2) {
   font-size: 1.75rem;
   color: var(--brown);
 }
