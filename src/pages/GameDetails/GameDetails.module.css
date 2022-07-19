@@ -42,6 +42,11 @@
   background-color: var(--lighter-salmon);
 }
 
+.gameDetails button:disabled {
+  background-color: var(--lighter-salmon);
+  cursor: default;
+}
+
 .gameDetails header {
   position: relative;
   display: flex;

@@ -1,5 +1,6 @@
 import { Divider, ScrollArea } from '@mantine/core';
 import React from 'react';
+import useTeams from '../../hooks/useTeams';
 import GameResult from '../../models/gameResult';
 
 import styles from './GameResultContainer.module.css';
@@ -10,6 +11,8 @@ interface GameResultContainerProps {
 }
 
 function GameResultContainer({ gameResult, unit }: GameResultContainerProps) {
+  const allTeams = useTeams();
+
   return (
     <ScrollArea
       styles={{ scrollbar: { '&:hover': { backgroundColor: '#00000000' } } }}
@@ -18,7 +21,7 @@ function GameResultContainer({ gameResult, unit }: GameResultContainerProps) {
     >
       <h3>
         <small>Vencedor</small>
-        {gameResult.champion}
+        {allTeams[gameResult.champion]}
       </h3>
 
       <Divider size="sm" color="var(--brown)" />

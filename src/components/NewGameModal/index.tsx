@@ -13,10 +13,10 @@ interface NewGameModalProps {
 }
 
 function NewGameModal({ opened, title, onClose, onGameCreation }: NewGameModalProps) {
-  const teams = useTeams();
+  const allTeams = useTeams();
 
-  const [team1, setTeam1] = useState<string | null>(null);
-  const [team2, setTeam2] = useState<string | null>(null);
+  const [teamCode1, setTeamCode1] = useState<string | null>(null);
+  const [teamCode2, setTeamCode2] = useState<string | null>(null);
 
   return (
     <Modal
@@ -29,45 +29,45 @@ function NewGameModal({ opened, title, onClose, onGameCreation }: NewGameModalPr
         <div className={styles.teams}>
           <Select
             label="Time 1"
-            data={Object.entries(teams)
+            data={Object.entries(allTeams)
               .map(([code, name]) => ({
                 value: code,
                 label: name,
               }))
-              .filter(({ value }) => value !== team2)}
+              .filter(({ value }) => value !== teamCode2)}
             searchable
             nothingFound="Nenhum time encontrado"
             radius="md"
             className={styles.inputElements}
-            value={team1}
-            onChange={(team) => setTeam1(team)}
+            value={teamCode1}
+            onChange={(team) => setTeamCode1(team)}
           />
 
           <span>X</span>
 
           <Select
             label="Time 2"
-            data={Object.entries(teams)
+            data={Object.entries(allTeams)
               .map(([code, name]) => ({
                 value: code,
                 label: name,
               }))
-              .filter(({ value }) => value !== team1)}
+              .filter(({ value }) => value !== teamCode1)}
             searchable
             nothingFound="Nenhum time encontrado"
             radius="md"
             className={styles.inputElements}
-            value={team2}
-            onChange={(team) => setTeam2(team)}
+            value={teamCode2}
+            onChange={(team) => setTeamCode2(team)}
           />
         </div>
 
         <button
           type="button"
-          disabled={!team1 || !team2}
+          disabled={!teamCode1 || !teamCode2}
           onClick={() => {
             const game: GameRequestBody = {
-              teams: [{ name: team1! }, { name: team2! }],
+              teams: [{ name: teamCode1! }, { name: teamCode2! }],
               players: [],
               unit: 'Beastcoins',
             };

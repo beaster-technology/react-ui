@@ -4,6 +4,7 @@ import Team from '../../models/team';
 import Player from '../../models/player';
 
 import styles from './AddPlayerModal.module.css';
+import useTeams from '../../hooks/useTeams';
 
 interface AddPlayerModalProps {
   opened: boolean;
@@ -22,6 +23,8 @@ function AddPlayerModal({
   onClose,
   onPlayerAddition,
 }: AddPlayerModalProps) {
+  const allTeams = useTeams();
+
   const emptyPlayer: Player = { name: '', bet: { value: 1, target: '' } };
 
   const [newPlayer, setNewPlayer] = useState<Player>(emptyPlayer);
@@ -65,7 +68,7 @@ function AddPlayerModal({
 
         <Select
           label="Time"
-          data={teams.map((team) => team.name)}
+          data={teams.map((team) => ({ value: team.name, label: allTeams[team.name] }))}
           searchable
           nothingFound="Nenhum time encontrado"
           radius="md"

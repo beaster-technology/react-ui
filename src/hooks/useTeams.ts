@@ -33,6 +33,6 @@ const teams = {
   wales: 'País de Gales',
 };
 
-export default function useTeams() {
+export default function useTeams(): { [key: string]: string } {
   return teams;
 }

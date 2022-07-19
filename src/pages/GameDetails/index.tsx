@@ -11,8 +11,11 @@ import AddPlayerModal from '../../components/AddPlayerModal';
 import GameResult from '../../models/gameResult';
 import PlayerList from '../../components/PlayerList';
 import GameResultContainer from '../../components/GameResultContainer';
+import useTeams from '../../hooks/useTeams';
 
 function GameDetails() {
+  const allTeams = useTeams();
+
   const params = useParams();
   const navigate = useNavigate();
 
@@ -45,6 +48,8 @@ function GameDetails() {
 
   const closeGame = async () => {
     if (params.gameId && game && !gameResult) {
+      await GameService.updateGame(params.gameId, game);
+
       const result = await GameService.closeGame(params.gameId);
 
       if (result) setGameResult(result);
@@ -54,8 +59,15 @@ function GameDetails() {
   useEffect(() => {
     if (params.gameId && !game) {
       GameService.getGameById(params.gameId).then((fetchedGame) => {
-        if (fetchedGame) setGame(fetchedGame);
-        else navigate('/');
+        if (fetchedGame) {
+          setGame(fetchedGame);
+
+          if (!fetchedGame?.is_open) {
+            GameService.closeGame(params.gameId!).then((g) => {
+              if (g) setGameResult(g);
+            });
+          }
+        } else navigate('/');
       });
     }
   }, []);
@@ -124,7 +136,7 @@ function GameDetails() {
 
       <section className={styles.gameDetails}>
         <header>
-          <span>{game?.teams[0].name}</span>
+          <span>{allTeams[game?.teams[0].name]}</span>
           <div className={styles.gameDefinition}>
             {game.is_open ? (
               <button type="button" onClick={() => setOpenGameDefinitionModal(true)}>
@@ -144,7 +156,7 @@ function GameDetails() {
               </>
             )}
           </div>
-          <span>{game?.teams[1].name}</span>
+          <span>{allTeams[game?.teams[1].name]}</span>
         </header>
 
         {!gameResult ? (
@@ -161,6 +173,7 @@ function GameDetails() {
               id="unit"
               placeholder="Beastcoins"
               maxLength={12}
+              disabled={!game.is_open}
               value={game?.unit === 'Beastcoins' ? '' : game?.unit}
               onChange={(e) =>
                 setGame((previousGame) => ({
@@ -171,7 +184,11 @@ function GameDetails() {
             />
           </label>
 
-          <button type="button" onClick={() => setOpenAddPlayerModal(true)}>
+          <button
+            type="button"
+            onClick={() => setOpenAddPlayerModal(true)}
+            disabled={!game.is_open}
+          >
             Novo Apostador
           </button>
         </footer>

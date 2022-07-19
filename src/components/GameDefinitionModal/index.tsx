@@ -3,6 +3,7 @@ import { Modal } from '@mantine/core';
 
 import styles from './GameDefinitionModal.module.css';
 import Team from '../../models/team';
+import useTeams from '../../hooks/useTeams';
 
 interface GameDefinitionModalProps {
   opened: boolean;
@@ -19,6 +20,8 @@ function GameDefinitionModal({
   onClose,
   onGameDefinition,
 }: GameDefinitionModalProps) {
+  const allTeams = useTeams();
+
   const [teamOneGoals, setTeamOneGoals] = useState('');
   const [teamTwoGoals, setTeamTwoGoals] = useState('');
 
@@ -32,7 +35,7 @@ function GameDefinitionModal({
       <div className={styles.contentWrapper}>
         <div className={styles.teams}>
           <label htmlFor="first-team">
-            {teams[0].name}
+            {allTeams[teams[0].name]}
             <input
               id="first-team"
               maxLength={4}
@@ -58,7 +61,7 @@ function GameDefinitionModal({
                 )
               }
             />
-            {teams[1].name}
+            {allTeams[teams[1].name]}
           </label>
         </div>
 
