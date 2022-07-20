@@ -136,7 +136,14 @@ function GameDetails() {
 
       <section className={styles.gameDetails}>
         <header>
-          <span>{allTeams[game?.teams[0].name]}</span>
+          <span>
+            <img
+              src={`https://countryflagsapi.com/png/${game.teams[0].name}`}
+              alt={allTeams[game.teams[0].name]}
+              className={styles.teamFlag}
+            />
+            {allTeams[game?.teams[0].name]}
+          </span>
           <div className={styles.gameDefinition}>
             {game.is_open ? (
               <button type="button" onClick={() => setOpenGameDefinitionModal(true)}>
@@ -156,7 +163,14 @@ function GameDetails() {
               </>
             )}
           </div>
-          <span>{allTeams[game?.teams[1].name]}</span>
+          <span>
+            {allTeams[game?.teams[1].name]}
+            <img
+              src={`https://countryflagsapi.com/png/${game.teams[1].name}`}
+              alt={allTeams[game.teams[1].name]}
+              className={styles.teamFlag}
+            />
+          </span>
         </header>
 
         {!gameResult ? (
@@ -178,7 +192,7 @@ function GameDetails() {
               onChange={(e) =>
                 setGame((previousGame) => ({
                   ...previousGame!,
-                  unit: e.target.value || 'Beastcoins',
+                  unit: e.target.value.trim() || 'Beastcoins',
                 }))
               }
             />

@@ -25,7 +25,7 @@
 }
 
 .placar .time img {
-  background-color: #000;
+  background-color: transparent;
   width: 4.5vw;
   height: 4.5vw;
   border-radius: 100%;

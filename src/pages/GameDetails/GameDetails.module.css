@@ -34,6 +34,11 @@
   transition: background-color 0.1s linear;
 }
 
+.gameDetails button:first-child {
+  padding: 0 1.3rem;
+  font-size: 1.2rem;
+}
+
 .gameDetails button:hover {
   background-color: var(--light-yellow);
 }
@@ -74,7 +79,7 @@
 
   display: flex;
   justify-content: center;
-  width: calc(40vw / 2);
+  width: calc(30vw / 2);
 }
 
 .box {
@@ -83,12 +88,35 @@
   justify-content: center;
 }
 
+.gameDetails header > span {
+  display: flex;
+  align-items: center;
+}
+
+.gameDetails header > span:first-child img {
+  margin-right: 1rem;
+}
+
+.gameDetails header > span:last-child img {
+  margin-left: 1rem;
+}
+
 .box:first-child > span {
   margin-right: auto;
 }
 
 .box:last-child > span {
   margin-left: auto;
+}
+
+.teamFlag {
+  background-color: #000;
+  width: 4.5vw;
+  height: 4.5vw;
+  border-radius: 100%;
+  -webkit-user-drag: none;
+
+  object-fit: cover;
 }
 
 .gameDetails footer {
