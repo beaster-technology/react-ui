@@ -35,9 +35,19 @@ node -v
 npm -v
 ```
 
-### Extraia o zip com o projeto para uma pasta
+### Clone o repositório para o seu computador
 
-Um dos arquivos .zip enviado em anexo contém o frontend do projeto. Descompacte o conteúdo do zip em uma pasta da sua escolha e a acesse pelo terminal
+O frontend do projeto pode ser encontrado [neste repositório no github](https://github.com/beaster-technology/react-ui). Para cloná-lo para seu computador, você pode usar a [CLI do Git](https://git-scm.com/).
+
+Com o Git instalado, basta clonar o repositório. Uma das formas mais simples de se fazer isso é utilizando o seguinte comando:
+
+```sh
+git clone https://github.com/beaster-technology/react-ui.git
+```
+
+> Note que o comando `git clone` irá criar uma pasta chamada `react-ui` contendo o frontend. É muito comum as pessoas cometerem o erro de criar uma pasta para conter o projeto e lá dentro rodar o comando. Se você fizer isso, irá acabar com uma pasta apenas contendo outra pasta, o que normalmente não é o desejado. O mais comum é rodar o comando no caminho em que você quer que a pasta seja colocada.
+
+Após clonado, basta rodar `cd react-ui` para entrar no repositório.
 
 ### Instale as dependências necessárias
 
