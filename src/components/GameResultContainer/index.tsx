@@ -21,7 +21,7 @@ function GameResultContainer({ gameResult, unit }: GameResultContainerProps) {
     >
       <h3>
         <small>Vencedor</small>
-        {allTeams[gameResult.champion]}
+        {gameResult.champion === 'Empate' ? gameResult.champion : allTeams[gameResult.champion]}
       </h3>
 
       <Divider size="sm" color="var(--brown)" />
